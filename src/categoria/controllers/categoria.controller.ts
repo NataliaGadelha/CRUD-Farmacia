@@ -44,6 +44,12 @@ export class CategoriaController {
     return this.categoriaService.findAllByNome(nome);
   }
 
+  @Get('/:id/contar-produtos')
+  @HttpCode(HttpStatus.OK)
+  contarProdutos(@Param('id', ParseIntPipe) id: number): Promise<number> {
+    return this.categoriaService.contarProdutosPorCategoria(id);
+  }
+
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() categoria: Categoria): Promise<Categoria> {
